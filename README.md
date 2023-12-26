@@ -1,8 +1,12 @@
+## Running Project from CLI
+
+    mvn spring-boot:run
+
 ## Monitoring with Prometheus
 
 In WSL Ubuntu terminal, view all exposed IPs:
 
-    ~$ hostname -I
+    hostname -I
 
 - *example result:* `000.00.00.000`
 
@@ -31,5 +35,5 @@ For some reason, Ubuntu's [UFW](https://wiki.ubuntu.com/UncomplicatedFirewall) i
     sudo ufw disable
 
 Don't forget to enable it when done!
-
+f
     sudo ufw enable

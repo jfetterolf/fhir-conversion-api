@@ -1,6 +1,7 @@
 package com.edi.smooky.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import com.edi.smooky.service.EdiService;
 // micrometer metrics
 import io.micrometer.prometheus.PrometheusMeterRegistry;
 
+@CrossOrigin
 @RequestMapping("api")
 @RestController
 public class EdiController {
