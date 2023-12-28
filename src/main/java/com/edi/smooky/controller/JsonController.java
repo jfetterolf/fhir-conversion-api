@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.edi.smooky.service.FatJarService;
 import com.edi.smooky.service.JsonService;
 
-// micrometer metrics
 import io.micrometer.prometheus.PrometheusMeterRegistry;;
 
 @CrossOrigin
@@ -23,6 +22,7 @@ import io.micrometer.prometheus.PrometheusMeterRegistry;;
 @RestController
 public class JsonController {
     
+    // Metrics monitoring
     private final PrometheusMeterRegistry jsonRegistry;
     public JsonController(PrometheusMeterRegistry jsonRegistry) {
         this.jsonRegistry = jsonRegistry;

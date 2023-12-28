@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.edi.smooky.service.Hl7v2Service;
 
-// import io.github.linuxforhealth.hl7.HL7ToFHIRConverter;
-
-// micrometer metrics
 import io.micrometer.prometheus.PrometheusMeterRegistry;
 
 @CrossOrigin
@@ -24,6 +21,7 @@ import io.micrometer.prometheus.PrometheusMeterRegistry;
 @RestController
 public class Hl7v2Controller {
     
+    // Metrics monitoring
     private final PrometheusMeterRegistry hl7Registry;
     public Hl7v2Controller(PrometheusMeterRegistry hl7Registry) {
         this.hl7Registry = hl7Registry;

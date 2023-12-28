@@ -9,6 +9,7 @@ public interface FatJarService {
 
     public static String executeFatJar() throws IOException, InterruptedIOException {
 
+        // calling Fat JAR file for WSTL transformation
         ProcessBuilder pb = new ProcessBuilder("java", "-jar", "./runtime-dev-SNAPSHOT-all.jar");
         Process p = pb.start();
         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -20,7 +21,6 @@ public interface FatJarService {
             builder.append(System.getProperty("line.separator"));
         }
         String result = builder.toString();
-        // System.out.println(result);
 
         return result;
     }

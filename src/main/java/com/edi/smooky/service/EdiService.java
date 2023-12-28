@@ -23,26 +23,20 @@ public interface EdiService {
 
     public static String transformEdiObject(String messageIn) throws IOException, SAXException, SmooksException {
 
-        // System.out.println("Input EDI Message: ");
-        // System.out.println(messageIn);
-
-        // The transform outputs to XML
-        // String messageOutXml = EdiController.runSmooksTransform(messageIn.getBytes());
+        // Smooks transformation going from input x12 to XML output
         String messageOutXml = EdiService.runSmooksTransform(messageIn.getBytes());
 
+        // Convering the resulting XML to a JSON output
         String messageOutJson = convert(messageOutXml.toString());
 
+        // Where the JSON needs to be saved - this is the file that the FatJarService looks to use
         String jsonFilePath = "src/main/output/smooksOutput.json";
 
+        // Clear the file if it exists and write in its place
         deleteFile(jsonFilePath);
         writeJson(jsonFilePath, messageOutJson);
 
-        // System.out.println("Output JSON Message: ");
-        // System.out.println(messageOutJson);
-
-        // System.out.println("**********************************************************************");
-
-        // System.out.println("FHIR Transformation Result: ");
+        // Execute FatJarService that runs the WSTL transformation
         try {
             String wstlTransformation = FatJarService.executeFatJar();
             return wstlTransformation.toString();
@@ -53,9 +47,8 @@ public interface EdiService {
     }
 
     public static String runSmooksTransform(byte[] messageIn) throws IOException, SAXException, SmooksException {
-        // Instantiate Smooks with the config file...
-
         
+        // Instantiate Smooks with the config file...
         Smooks smooks = new Smooks("/home/jon/smooky/src/main/resources/smooks/smooks-config-837.xml");
         try {
              // Create an exec context - no profiles....

@@ -10,16 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-// smooky stuff
 import org.smooks.api.SmooksException;
 import org.xml.sax.SAXException;
 import java.io.IOException;
 
-// service stuff
 import com.edi.smooky.service.EdiService;
 import com.edi.smooky.service.X12ToJsonService;
 
-// micrometer metrics
 import io.micrometer.prometheus.PrometheusMeterRegistry;
 
 @CrossOrigin
@@ -27,6 +24,7 @@ import io.micrometer.prometheus.PrometheusMeterRegistry;
 @RestController
 public class EdiController {
 
+    // Metrics monitoring
     private final PrometheusMeterRegistry ediRegistry;
     public EdiController(PrometheusMeterRegistry ediRegistry) {
         this.ediRegistry = ediRegistry;
@@ -51,6 +49,15 @@ public class EdiController {
 
         return EdiService.transformEdiObject(messageIn);
             
+    }
+
+    @GetMapping("/x12")
+    public String HolaWorld() {
+
+        // Collecting metric: api_edi_get
+        ediRegistry.counter("api.x12.get").increment();
+
+        return "Hola! I exist and am ready to take in an EDI message!";
     }
 
     @PostMapping("/x12")
