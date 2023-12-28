@@ -17,6 +17,7 @@ import java.io.IOException;
 
 // service stuff
 import com.edi.smooky.service.EdiService;
+import com.edi.smooky.service.X12ToJsonService;
 
 // micrometer metrics
 import io.micrometer.prometheus.PrometheusMeterRegistry;
@@ -46,10 +47,23 @@ public class EdiController {
     public String registerEdiObject(@RequestBody String messageIn) throws IOException, SAXException, SmooksException {
 
         // Collecting metric: api_edi_post
-        ediRegistry.counter("api.edi.post").increment();;
+        ediRegistry.counter("api.edi.post").increment();
 
         return EdiService.transformEdiObject(messageIn);
             
     }
+
+    @PostMapping("/x12")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public String registerX12Object(@RequestBody String messageIn) throws IOException {
+
+        // Collecting metric: api_edi_post
+        ediRegistry.counter("api.x12.post").increment();
+
+        return X12ToJsonService.transformX12Object(messageIn);
+            
+    }
+
 
 }

@@ -35,5 +35,5 @@ For some reason, Ubuntu's [UFW](https://wiki.ubuntu.com/UncomplicatedFirewall) i
     sudo ufw disable
 
 Don't forget to enable it when done!
-f
+
     sudo ufw enable

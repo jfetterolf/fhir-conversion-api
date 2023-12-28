@@ -79,7 +79,7 @@ public interface EdiService {
         JSONObject json = XML.toJSONObject(xml);
 
         // Return Output
-        return json.toString();
+        return json.toString(4);
     }
 
     public static void deleteFile(String filePath) {

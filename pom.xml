@@ -67,6 +67,13 @@
 			<version>1.0.10</version>
 		</dependency>
 
+		<!-- dep for x12 parsing -->
+		<dependency>
+			<groupId>com.imsweb</groupId>
+			<artifactId>x12-parser</artifactId>
+			<version>1.15</version>
+		</dependency>
+
 		<!-- Monitoring -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

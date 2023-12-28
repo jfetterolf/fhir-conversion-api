@@ -23,7 +23,7 @@ import io.micrometer.prometheus.PrometheusMeterRegistry;
 @RequestMapping("api")
 @RestController
 public class Hl7v2Controller {
-
+    
     private final PrometheusMeterRegistry hl7Registry;
     public Hl7v2Controller(PrometheusMeterRegistry hl7Registry) {
         this.hl7Registry = hl7Registry;
