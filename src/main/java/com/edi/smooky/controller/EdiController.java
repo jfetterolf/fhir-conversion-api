@@ -68,9 +68,52 @@ public class EdiController {
         // Collecting metric: api_edi_post
         ediRegistry.counter("api.x12.post").increment();
 
-        return X12ToJsonService.transformX12Object(messageIn);
+        return X12ToJsonService.transformX12837Object(messageIn);
             
     }
+
+    @GetMapping("/x12271")
+    public String AhoyWorld() {
+
+        // Collecting metric: api_edi_get
+        ediRegistry.counter("api.x12271.get").increment();
+
+        return "Ahoy! I exist and am ready to take in an EDI 271 message!";
+    }
+
+    @PostMapping("/x12271")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public String registerX12271Object(@RequestBody String messageIn) throws IOException {
+
+        // Collecting metric: api_edi_post
+        ediRegistry.counter("api.x12271.post").increment();
+
+        return X12ToJsonService.transformX12271Object(messageIn);
+            
+    }
+
+    @GetMapping("/x12270")
+    public String KonichiwaWorld() {
+
+        // Collecting metric: api_edi_get
+        ediRegistry.counter("api.x12270.get").increment();
+
+        return "Konichiwa! I exist and am ready to take in an EDI 271 message!";
+    }
+
+    @PostMapping("/x12270")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public String registerX12270Object(@RequestBody String messageIn) throws IOException {
+
+        // Collecting metric: api_edi_post
+        ediRegistry.counter("api.x12270.post").increment();
+
+        return X12ToJsonService.transformX12271Object(messageIn);
+            
+    }
+
 
 
 }

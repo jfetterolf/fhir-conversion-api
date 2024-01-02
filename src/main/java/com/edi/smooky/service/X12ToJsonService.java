@@ -15,16 +15,28 @@ public interface X12ToJsonService {
 
     // JF - TODO: will need to set up/refactor for ther types of x12 (837, 834, 271)
 
-    public static String transformX12Object(String x12Message) throws IOException {
-        String xml = imsWebParse2Xml(x12Message);
+    public static String transformX12837Object(String x12Message) throws IOException {
+        String xml = imsWebParse837ToXml(x12Message, FileType.ANSI837_5010_X222);
         String json = convertXMLToJson(xml);
         return json;
     }
 
-    public static String imsWebParse2Xml(String ediMessage) {
+    public static String transformX12271Object(String x12Message) throws IOException {
+        String xml = imsWebParse837ToXml(x12Message, FileType.ANSI271_4010_X092);
+        String json = convertXMLToJson(xml);
+        return json;
+    }
+
+    public static String transformX12270Object(String x12Message) throws IOException {
+        String xml = imsWebParse837ToXml(x12Message, FileType.ANSI270_4010_X092);
+        String json = convertXMLToJson(xml);
+        return json;
+    }
+
+    public static String imsWebParse837ToXml(String ediMessage, FileType fileType) {
 		try {
 
-            X12Reader reader = new X12Reader(FileType.ANSI837_5010_X222, new StringReader(ediMessage));
+            X12Reader reader = new X12Reader(fileType, new StringReader(ediMessage));
 
 			List<Loop> loops = reader.getLoops();
 			Loop loop = loops.get(0);
