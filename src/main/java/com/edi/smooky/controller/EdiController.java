@@ -1,5 +1,8 @@
 package com.edi.smooky.controller;
 
+import java.io.IOException;
+
+import org.smooks.api.SmooksException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import org.smooks.api.SmooksException;
 import org.xml.sax.SAXException;
-import java.io.IOException;
 
 import com.edi.smooky.service.EdiService;
 import com.edi.smooky.service.X12ToJsonService;
@@ -31,18 +31,18 @@ public class EdiController {
     };
 
     @GetMapping("/edi")
-    public String HelloWorld() {
+    public String helloEdi() {
 
         // Collecting metric: api_edi_get
         ediRegistry.counter("api.edi.get").increment();
 
-        return "I exist and am ready to take in an EDI message!";
+        return "200 OK";
     }
 
     @PostMapping("/edi")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public String registerEdiObject(@RequestBody String messageIn) throws IOException, SAXException, SmooksException {
+    public String transformEdi(@RequestBody String messageIn) throws IOException, SAXException, SmooksException {
 
         // Collecting metric: api_edi_post
         ediRegistry.counter("api.edi.post").increment();
@@ -52,18 +52,18 @@ public class EdiController {
     }
 
     @GetMapping("/x12")
-    public String HolaWorld() {
+    public String helloX12() {
 
         // Collecting metric: api_edi_get
         ediRegistry.counter("api.x12.get").increment();
 
-        return "Hola! I exist and am ready to take in an EDI message!";
+        return "200 OK";
     }
 
     @PostMapping("/x12")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public String registerX12Object(@RequestBody String messageIn) throws IOException {
+    public String transformX12(@RequestBody String messageIn) throws IOException {
 
         // Collecting metric: api_edi_post
         ediRegistry.counter("api.x12.post").increment();
@@ -73,18 +73,18 @@ public class EdiController {
     }
 
     @GetMapping("/x12271")
-    public String AhoyWorld() {
+    public String helloX12271() {
 
         // Collecting metric: api_edi_get
         ediRegistry.counter("api.x12271.get").increment();
 
-        return "Ahoy! I exist and am ready to take in an EDI 271 message!";
+        return "200 OK";
     }
 
     @PostMapping("/x12271")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public String registerX12271Object(@RequestBody String messageIn) throws IOException {
+    public String transformX12271(@RequestBody String messageIn) throws IOException {
 
         // Collecting metric: api_edi_post
         ediRegistry.counter("api.x12271.post").increment();
@@ -94,18 +94,18 @@ public class EdiController {
     }
 
     @GetMapping("/x12270")
-    public String KonichiwaWorld() {
+    public String helloX12270() {
 
         // Collecting metric: api_edi_get
         ediRegistry.counter("api.x12270.get").increment();
 
-        return "Konichiwa! I exist and am ready to take in an EDI 271 message!";
+        return "200 OK";
     }
 
     @PostMapping("/x12270")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public String registerX12270Object(@RequestBody String messageIn) throws IOException {
+    public String transformX1227(@RequestBody String messageIn) throws IOException {
 
         // Collecting metric: api_edi_post
         ediRegistry.counter("api.x12270.post").increment();

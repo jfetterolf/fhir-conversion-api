@@ -28,18 +28,18 @@ public class Hl7v2Controller {
     };
     
     @GetMapping("/hl7")
-    public String HelloWorld() {
+    public String helloHl7() {
         
         // Collecting metric: api_hl7_get
         hl7Registry.counter("api.hl7.get").increment();
 
-        return "I exist and am ready to take in a HL7 message!";
+        return "200 OK";
     }
 
     @PostMapping("/hl7")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public String registerHl7String(@RequestBody String hl7Message) throws IOException {
+    public String transformHl7(@RequestBody String hl7Message) throws IOException {
 
         // Collecting metric: api_hl7_post
         hl7Registry.counter("api.hl7.post").increment();

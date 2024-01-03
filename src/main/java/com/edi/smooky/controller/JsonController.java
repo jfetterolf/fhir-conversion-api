@@ -29,18 +29,18 @@ public class JsonController {
     };
     
     @GetMapping("/json")
-    public String HelloWorld() {
+    public String helloJson() {
 
         // Collecting metric: api_json_get
         jsonRegistry.counter("api.json.get").increment();
 
-        return "I exist and am ready to take in a JSON message!";
+        return "200 OK";
     }
 
     @PostMapping("/json")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public String registerJSONString(@RequestBody String jsonMessage) throws IOException {
+    public String transformJSON(@RequestBody String jsonMessage) throws IOException {
 
         // Collecting metric: api_json_post
         jsonRegistry.counter("api.json.post").increment();
