@@ -1,3 +1,15 @@
+## About the project
+
+A REST API used to convert various data formats to FHIR. 
+
+## Getting Started
+
+### Prerequisites
+
+- Java 21.0.1
+- Apache Maven 3.9.5
+- Docker (Observability)
+
 ## Running Project from CLI
 
     mvn spring-boot:run
